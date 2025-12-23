@@ -1,0 +1,828 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #e74c3c;
+  --secondary-color: #3498db;
+  --romantic-color: #ff6b9d;
+  --motivational-color: #f39c12;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --bg-light: #f8f9fa;
+  --bg-white: #ffffff;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.15);
+  --shadow-3d: 0 10px 30px rgba(0, 0, 0, 0.2);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+  --transition-3d: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+  --text-dark: #ecf0f1;
+  --text-light: #bdc3c7;
+  --bg-light: #1a1a2e;
+  --bg-white: #16213e;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.4);
+  --shadow-3d: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  font-family: "Georgia", "Times New Roman", serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  padding: 60px 20px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>')
+    no-repeat bottom;
+  background-size: cover;
+  opacity: 0.3;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  text-align: left;
+}
+
+.site-title {
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.site-subtitle {
+  font-size: 1.2rem;
+  font-style: italic;
+  opacity: 0.9;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1) rotate(15deg);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle .sun-icon,
+.theme-toggle .moon-icon {
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle .sun-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle .moon-icon {
+  opacity: 0;
+  transform: rotate(180deg) scale(0);
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+  opacity: 0;
+  transform: rotate(-180deg) scale(0);
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Navigation Styles */
+.nav {
+  background-color: var(--bg-white);
+  padding: 20px 0;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-bar {
+  flex: 1;
+  min-width: 200px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #ecf0f1;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: var(--transition);
+  font-family: "Arial", sans-serif;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.search-input::placeholder {
+  color: var(--text-light);
+}
+
+/* Dark mode search input */
+[data-theme="dark"] .search-input {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .search-input:focus {
+  border-color: var(--romantic-color);
+  box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+}
+
+/* Filter Dropdown Container */
+.filter-dropdown-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-label {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  font-family: "Arial", sans-serif;
+  font-weight: 500;
+}
+
+.filter-dropdown {
+  padding: 10px 20px;
+  border: 2px solid #ecf0f1;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  font-family: "Arial", sans-serif;
+  font-weight: 500;
+  min-width: 180px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e74c3c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 18px;
+  padding-right: 45px;
+}
+
+.filter-dropdown:hover {
+  border-color: var(--primary-color);
+}
+
+.filter-dropdown:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+/* Dark mode dropdown */
+[data-theme="dark"] .filter-dropdown {
+  border-color: rgba(255, 255, 255, 0.2);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff6b9d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+[data-theme="dark"] .filter-dropdown:hover,
+[data-theme="dark"] .filter-dropdown:focus {
+  border-color: var(--romantic-color);
+  box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+}
+
+.view-toggle {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.view-btn {
+  padding: 10px 20px;
+  border: 2px solid #ecf0f1;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  font-family: "Arial", sans-serif;
+  font-weight: 500;
+}
+
+.view-btn:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.view-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Dark mode specific button styles */
+[data-theme="dark"] .view-btn {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .view-btn:hover {
+  border-color: var(--romantic-color);
+  background-color: rgba(255, 107, 157, 0.1);
+}
+
+/* Playground Link */
+.playground-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(
+    135deg,
+    var(--romantic-color),
+    var(--motivational-color)
+  );
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-family: "Arial", sans-serif;
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: 0 4px 10px rgba(255, 107, 157, 0.3);
+}
+
+.playground-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 107, 157, 0.4);
+}
+
+.playground-link svg {
+  flex-shrink: 0;
+}
+
+/* Dark mode playground link */
+[data-theme="dark"] .playground-link {
+  box-shadow: 0 4px 10px rgba(255, 107, 157, 0.4);
+}
+
+[data-theme="dark"] .playground-link:hover {
+  box-shadow: 0 6px 15px rgba(255, 107, 157, 0.5);
+}
+
+/* Main Content */
+.main {
+  padding: 40px 0;
+  min-height: calc(100vh - 400px);
+}
+
+.content-section {
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--romantic-color),
+    var(--motivational-color)
+  );
+  border-radius: 2px;
+}
+
+/* Cards Container */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* Poem Card */
+.poem-card {
+  background-color: var(--bg-white);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  box-shadow: var(--shadow);
+  transition: var(--transition-3d);
+  border-left: 4px solid var(--romantic-color);
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.poem-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(
+    --category-gradient,
+    linear-gradient(135deg, var(--romantic-color) 0%, transparent 100%)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: var(--border-radius);
+  z-index: 0;
+}
+
+.poem-card:hover {
+  transform: translateY(-10px) rotateX(5deg) scale(1.02);
+  box-shadow: var(--shadow-3d);
+}
+
+.poem-card:hover::before {
+  opacity: 0.05;
+}
+
+.poem-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.poem-title {
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.poem-content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  white-space: pre-line;
+  font-style: italic;
+}
+
+.poem-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid #ecf0f1;
+}
+
+.meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.poem-author {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  font-family: "Arial", sans-serif;
+  font-style: italic;
+}
+
+.category-tag {
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: "Arial", sans-serif;
+  /* Colors will be applied dynamically via JavaScript */
+}
+
+.poem-date {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-family: "Arial", sans-serif;
+}
+
+/* Quote Card */
+.quote-card {
+  background-color: var(--bg-white);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  box-shadow: var(--shadow);
+  transition: var(--transition-3d);
+  position: relative;
+  border-left: 4px solid var(--romantic-color);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.quote-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(
+    --category-gradient,
+    linear-gradient(135deg, var(--romantic-color) 0%, transparent 100%)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: var(--border-radius);
+  z-index: 0;
+}
+
+.quote-card:hover {
+  transform: translateY(-10px) rotateX(-5deg) scale(1.02);
+  box-shadow: var(--shadow-3d);
+}
+
+.quote-card:hover::after {
+  opacity: 0.05;
+}
+
+.quote-card::before {
+  content: '"';
+  font-size: 4rem;
+  color: var(--primary-color);
+  opacity: 0.2;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-family: Georgia, serif;
+  z-index: 0;
+  transition: all 0.3s ease;
+}
+
+.quote-card:hover::before {
+  opacity: 0.3;
+  transform: scale(1.2) rotate(-10deg);
+}
+
+.quote-text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid #ecf0f1;
+}
+
+/* Dark mode border for meta sections */
+[data-theme="dark"] .poem-meta,
+[data-theme="dark"] .quote-meta {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-light);
+  font-size: 1.2rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.footer p {
+  margin: 10px 0;
+  color: white;
+}
+
+/* Dark mode footer */
+[data-theme="dark"] .footer {
+  background-color: #0f1419;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 2rem;
+  }
+
+  .site-subtitle {
+    font-size: 1rem;
+  }
+
+  .nav .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .filter-dropdown-container {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-dropdown {
+    flex: 1;
+  }
+
+  .view-toggle {
+    justify-content: center;
+  }
+
+  .playground-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--romantic-color);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--romantic-color);
+  color: white;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    var(--romantic-color),
+    var(--motivational-color)
+  );
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    135deg,
+    var(--motivational-color),
+    var(--romantic-color)
+  );
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--text-dark);
+  color: var(--bg-white);
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateX(400px);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Arial", sans-serif;
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast::before {
+  content: "✓";
+  width: 24px;
+  height: 24px;
+  background: var(--romantic-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Copy Button */
+.copy-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid var(--romantic-color);
+  color: var(--romantic-color);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: "Arial", sans-serif;
+  transition: all 0.3s ease;
+  opacity: 0;
+  z-index: 2;
+}
+
+.poem-card:hover .copy-btn,
+.quote-card:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: var(--romantic-color);
+  color: white;
+  transform: scale(1.05);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+/* Staggered animation for cards */
+.poem-card,
+.quote-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.poem-card:nth-child(1),
+.quote-card:nth-child(1) {
+  animation-delay: 0s;
+}
+.poem-card:nth-child(2),
+.quote-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.poem-card:nth-child(3),
+.quote-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.poem-card:nth-child(4),
+.quote-card:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.poem-card:nth-child(5),
+.quote-card:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.poem-card:nth-child(6),
+.quote-card:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--romantic-color);
+  outline-offset: 2px;
+}

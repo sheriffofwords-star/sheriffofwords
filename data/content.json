@@ -1,0 +1,88 @@
+{
+  "poems": [
+    {
+      "id": 1,
+      "title": "Silence",
+      "content": "Silence, at times, becomes the perfect reply;\nA language beyond words, profound and wise.\n\nYou need not speak, or justify;\nSometimes that's all the moment truly needs.",
+      "category": "philosophical",
+      "author": "A. S",
+      "date": "2015-05-16"
+    },
+    {
+      "id": 2,
+      "title": "Shadows of light",
+      "content": "Darkness is required to see the light,\nWalk through it towards your light.\n\nYour shadows reveal what truly matters,\nTill morning comes and darkness scatters.",
+      "category": "philosophical",
+      "author": "A. S",
+      "date": "2015-09-26"
+    },
+    {
+      "id": 3,
+      "title": "Where Flowers Bloom",
+      "content": "A flower blooms only once,\nBut the flower shall bloom again, somewhere else.\n\nPerhaps at the same place, but on a different day,\nBe someone's different day.",
+      "category": "inspirational",
+      "author": "A. S",
+      "date": "2015-09-26"
+    },
+    {
+      "id": 4,
+      "title": "Middle of the Sea",
+      "content": "A distant dropping sun,\nteasing waves with endless stories to tell,\nand you make my perfect evening.",
+      "category": "romantic",
+      "author": "A. S",
+      "date": "2022-12-22"
+    },
+    {
+      "id": 5,
+      "title": "Footprints",
+      "content": "I love what a wave can do to the shore.\nteasing waves with endless stories to tell,\nand you make my perfect evening.",
+      "category": "life lessons",
+      "author": "A. S",
+      "date": "2022-12-22"
+    }
+  ],
+  "quotes": [
+    {
+      "id": 1,
+      "text": "We touch with our eyes, not just with our hands.",
+      "category": "romantic",
+      "author": "A. S",
+      "date": "2015-11-04"
+    },
+    {
+      "id": 2,
+      "text": "I love black coffee, travel and you.",
+      "category": "romantic",
+      "author": "A. S",
+      "date": "2016-01-03"
+    },
+    {
+      "id": 3,
+      "text": "There is no reason to love someone. If it's love then you wouldn't need one.",
+      "category": "romantic",
+      "author": "A. S",
+      "date": "2021-10-10"
+    },
+    {
+      "id": 4,
+      "text": "I love what a wave can do to the shore.\nNo matter how deep the footprints are,she will always heal him.",
+      "category": "romantic",
+      "author": "A. S",
+      "date": "2022-02-28"
+    },
+    {
+      "id": 5,
+      "text": "What feels like fun to you but work to others - do that often.",
+      "category": "motivational",
+      "author": "A. S",
+      "date": "2022-06-11"
+    },
+    {
+      "id": 6,
+      "text": "Why be a choice when you can be the chosen?",
+      "category": "inspirational",
+      "author": "A. S",
+      "date": "2022-06-24"
+    }
+  ]
+}

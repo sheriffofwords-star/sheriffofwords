@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poet's Playground - Poems & Quotes</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/playground.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <h1 class="site-title">Poet's Playground</h1>
+                    <p class="site-subtitle">Experiment with adding your own poems and quotes!</p>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back to Site</a>
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="poems">Poems</button>
+                <button class="tab-btn" data-tab="quotes">Quotes</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Temporary Notice Banner -->
+    <div
+        style="background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(243, 156, 18, 0.1)); padding: 15px; text-align: center; border-bottom: 2px solid rgba(255, 107, 157, 0.3);">
+        <p style="margin: 0; color: var(--text-dark); font-family: 'Arial', sans-serif;">
+            <strong>✍️ Try it out!</strong> Write a poem or quote and get a feel of how it will look when published.
+            <a href="#instructions" style="color: var(--romantic-color); text-decoration: underline;">Learn more</a>
+        </p>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Poems Tab -->
+            <div id="poemsTab" class="admin-tab active">
+                <div class="admin-panel">
+                    <div class="form-section">
+                        <h2 class="section-title">Add/Edit Poem</h2>
+                        <form id="poemForm" class="admin-form">
+                            <input type="hidden" id="poemId">
+
+                            <div class="form-group">
+                                <label for="poemTitle">Title</label>
+                                <input type="text" id="poemTitle" required placeholder="Enter poem title">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="poemContent">Content</label>
+                                <textarea id="poemContent" required placeholder="Enter poem content..."
+                                    rows="10"></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="poemCategory">Category</label>
+                                    <select id="poemCategory" required>
+                                        <option value="romantic">Romantic</option>
+                                        <option value="motivational">Motivational</option>
+                                        <option value="philosophical">Philosophical</option>
+                                        <option value="inspirational">Inspirational</option>
+                                        <option value="reflective">Reflective</option>
+                                        <option value="life-lessons">Life Lessons</option>
+                                        <option value="friendship">Friendship</option>
+                                        <option value="nature">Nature</option>
+                                        <option value="humor">Humor</option>
+                                        <option value="melancholic">Melancholic</option>
+                                        <option value="others">Others</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="poemAuthor">Author</label>
+                                    <input type="text" id="poemAuthor" required placeholder="Author name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="poemDate">Date</label>
+                                    <input type="date" id="poemDate" required>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Save Poem</button>
+                                <button type="button" class="btn btn-secondary" id="cancelPoemBtn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="list-section">
+                        <h2 class="section-title">Existing Poems</h2>
+                        <div id="poemsList" class="items-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quotes Tab -->
+            <div id="quotesTab" class="admin-tab">
+                <div class="admin-panel">
+                    <div class="form-section">
+                        <h2 class="section-title">Add/Edit Quote</h2>
+                        <form id="quoteForm" class="admin-form">
+                            <input type="hidden" id="quoteId">
+
+                            <div class="form-group">
+                                <label for="quoteText">Quote Text</label>
+                                <textarea id="quoteText" required placeholder="Enter quote text..." rows="5"></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="quoteCategory">Category</label>
+                                    <select id="quoteCategory" required>
+                                        <option value="romantic">Romantic</option>
+                                        <option value="motivational">Motivational</option>
+                                        <option value="philosophical">Philosophical</option>
+                                        <option value="inspirational">Inspirational</option>
+                                        <option value="reflective">Reflective</option>
+                                        <option value="life-lessons">Life Lessons</option>
+                                        <option value="friendship">Friendship</option>
+                                        <option value="nature">Nature</option>
+                                        <option value="humor">Humor</option>
+                                        <option value="melancholic">Melancholic</option>
+                                        <option value="others">Others</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="quoteAuthor">Author</label>
+                                    <input type="text" id="quoteAuthor" required placeholder="Author name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="quoteDate">Date</label>
+                                    <input type="date" id="quoteDate" required>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Save Quote</button>
+                                <button type="button" class="btn btn-secondary" id="cancelQuoteBtn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="list-section">
+                        <h2 class="section-title">Existing Quotes</h2>
+                        <div id="quotesList" class="items-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div id="instructions" class="instructions">
+                <h3>Welcome to the Poet's Playground!</h3>
+                <p>Poet's playground is a creative space where you can experiment with adding your
+                    own poems and quotes to the website. Your changes are saved only in your browser's local storage
+                    unless you decide to publish.</p>
+
+                <p><strong>How it works:</strong></p>
+                <ul>
+                    <li>Add, edit, or delete poems and quotes using the forms above.</li>
+                    <li>Original site content is marked with "ORIGINAL" badges and cannot be edited.</li>
+                    <li>Your creations are marked with "YOUR CREATION" badges and can be edited anytime.</li>
+                    <li>Click "Download JSON" to save your creations to a file.</li>
+                    <li>Click "Reset to Original" to restore the site's default content or clear your browser data.</li>
+                </ul>
+
+                <div
+                    style="background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(243, 156, 18, 0.1)); padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid var(--romantic-color);">
+                    <h4 style="margin-top: 0; color: var(--text-dark);">📮 Want Your Poem Published Permanently?</h4>
+                    <p style="margin-bottom: 10px;">If you've created something special and would like it featured on
+                        the main site, submit it for review!</p>
+                    <p><strong>How to submit:</strong></p>
+                    <ol style="margin-left: 20px; line-height: 1.8;">
+                        <li>Write your poem or quote in the form above</li>
+                        <li>Click "Download JSON" to save your creations to a file.</li>
+                        <li>Email the file to: <strong
+                                style="color: var(--primary-color);">sheriffofwords@gmail.com</strong>
+                        </li>
+                        <li>Congratulations! You are now an author.</li>
+                    </ol>
+                    <p style="margin-bottom: 0;"><em><strong>Note:</strong> All submissions are reviewed to ensure
+                            they're free from explicit language before publication.</em></p>
+                </div>
+
+                <button class="btn btn-success" id="downloadBtn">Download JSON</button>
+                <button class="btn btn-info" id="resetBtn">Reset to Original</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Sheriff of Words. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Alert Modal -->
+    <div id="customAlert" class="custom-alert-overlay">
+        <div class="custom-alert-box">
+            <div class="custom-alert-icon" id="alertIcon"></div>
+            <h3 class="custom-alert-title" id="alertTitle">Alert</h3>
+            <p class="custom-alert-message" id="alertMessage">Message goes here</p>
+            <div class="custom-alert-buttons">
+                <button class="btn btn-primary" id="alertOkBtn">OK</button>
+                <button class="btn btn-secondary" id="alertCancelBtn" style="display: none;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/playground.js"></script>
+</body>
+
+</html>
